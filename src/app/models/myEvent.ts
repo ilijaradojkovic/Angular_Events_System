@@ -1,4 +1,5 @@
 import {MyLocation} from "./myLocation";
+import {MySession} from "./session";
 
 export interface MyEvent {
 
@@ -9,6 +10,7 @@ export interface MyEvent {
     price: number
     imageUrl:string
     location:MyLocation
+    sessions:MySession[]
 
 
 
