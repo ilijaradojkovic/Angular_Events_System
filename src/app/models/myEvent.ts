@@ -9,8 +9,9 @@ export interface MyEvent {
     time:string
     price: number
     imageUrl:string
-    location:MyLocation
-    sessions:MySession[]
+    location?:MyLocation
+  onlineUrl?:string
+    sessions?:MySession[]
 
 
 

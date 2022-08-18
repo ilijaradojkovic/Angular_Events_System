@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./event-details.component.css']
 })
 export class EventDetailsComponent implements OnInit {
-event:any
+event:MyEvent | undefined
   constructor(private eventService:EventService,private routInfo:ActivatedRoute) {
 
 }
