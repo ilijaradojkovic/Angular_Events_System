@@ -21,4 +21,17 @@
       </address>
     </div>
   </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-2">
+      <h3 style="margin: 0" (click)="ShowSessions()">Sessions</h3>
+    </div>
+    <div class="col-mg-2">
+      <a (click)="addSession()">AddSession</a>
+    </div>
+  </div>
+  <app-session-list *ngIf="!addMode" [sessions]="event?.sessions"></app-session-list>
+  <app-session (cancelAddMode)="CancelAddMode()" (saveNewSession)="SaveSessionToEvent($event)" *ngIf="addMode"></app-session>
 </div>

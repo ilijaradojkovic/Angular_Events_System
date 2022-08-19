@@ -19,11 +19,14 @@ import { ProfileComponent } from './events/profile/profile.component';
 import { LoginComponent } from './events/profile/login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthService} from "./servics/auth.service";
+import { SessionComponent } from './events/event-details/create-session/session/session.component';
+import { SessionListComponent } from './events/event-details/session-list/session-list.component';
 
 export  const appRoutes:Routes=[
   {path:'events',component:EventListComponent,resolve:{events:EventListResolver}},
   {path:'events/new',component: CreateEventComponent,canDeactivate:['canDeactivateCreateEvent'] },
   {path:'events/:id',component: EventDetailsComponent,canActivate:[EventRouteActivator]},
+  {path:'events/session/new',component: SessionComponent },
   {path:'user',loadChildren:()=>import('./events/profile/user/user.module').then(m=>m.UserModule)},
   {path:'404',component: EventErrorComponent},
   {path:'**',redirectTo:'/events',pathMatch:'full'}
@@ -40,12 +43,15 @@ export  const appRoutes:Routes=[
     CreateEventComponent,
     EventErrorComponent,
     ProfileComponent,
-    LoginComponent
+    LoginComponent,
+    SessionComponent,
+    SessionListComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,

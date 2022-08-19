@@ -18,7 +18,19 @@ export class EventService {
   getEvent(id:number):MyEvent | undefined{
     return EVENTS.find((event:MyEvent)=>event.id===id)
   }
+
+  saveEvent(event: MyEvent) {
+    event.id=999
+    event.sessions=[]
+    EVENTS.push(event)
+  }
+
+  updateEvent(event: MyEvent ) {
+    let index=EVENTS.findIndex(x=>x.id==event.id)
+    EVENTS[index]=event
+  }
 }
+// @ts-ignore
 const EVENTS:MyEvent[] = [
   {
     id: 1,
@@ -39,10 +51,7 @@ const EVENTS:MyEvent[] = [
         presenter: "Peter Bacon Darwin",
         duration: 1,
         level: "Intermediate",
-        abstract: `Learn all about the new pipes in Angular 4, both
-          how to write them, and how to get the new AI CLI to write
-          them for you. Given by the famous PBD, president of Angular
-          University (formerly Oxford University)`,
+        abstract: "Angular University (formerly Oxford University)",
         voters: ['bradgreen', 'igorminar', 'martinfowler']
       },
       {

@@ -1,5 +1,6 @@
 import {MyLocation} from "./myLocation";
-import {MySession} from "./session";
+import {MySession} from "./mySession";
+
 
 export interface MyEvent {
 
@@ -9,9 +10,9 @@ export interface MyEvent {
     time:string
     price: number
     imageUrl:string
-    location?:MyLocation
-  onlineUrl?:string
-    sessions?:MySession[]
+    location:MyLocation
+    onlineUrl?:string
+    sessions:MySession[]
 
 
 

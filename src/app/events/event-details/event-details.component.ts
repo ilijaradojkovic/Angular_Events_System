@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {MyEvent} from "../../models/myEvent";
 import {EventService} from "../../servics/event.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {MySession} from "../../models/mySession";
 
 @Component({
   selector: 'app-event-details',
@@ -10,7 +11,9 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class EventDetailsComponent implements OnInit {
 event:MyEvent | undefined
-  constructor(private eventService:EventService,private routInfo:ActivatedRoute) {
+  addMode:boolean=false
+  @Output() cancelAddMode:EventEmitter<void>=new EventEmitter<void>()
+  constructor(private eventService:EventService,private routInfo:ActivatedRoute,private router:Router) {
 
 }
 
@@ -22,4 +25,24 @@ this.event=this.eventService.getEvent(Number(id))
 
   }
 
+  addSession() {
+this.addMode=true
+  }
+
+  ShowSessions() {
+    this.addMode=false
+
+  }
+
+  SaveSessionToEvent($event: MySession) {
+    const idNext=Math.max.apply(null,this.event?.sessions.map(s=>s.id)!)
+$event.id=idNext
+this.event?.sessions.push($event)
+this.eventService.updateEvent(this.event!)
+    this.addMode=false
+}
+
+  CancelAddMode() {
+    this.addMode=false
+  }
 }
