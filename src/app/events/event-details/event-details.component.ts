@@ -12,7 +12,9 @@ import {MySession} from "../../models/mySession";
 export class EventDetailsComponent implements OnInit {
 event:MyEvent | undefined
   addMode:boolean=false
+  filterBy:string="all"
   @Output() cancelAddMode:EventEmitter<void>=new EventEmitter<void>()
+  sortBy: string="";
   constructor(private eventService:EventService,private routInfo:ActivatedRoute,private router:Router) {
 
 }

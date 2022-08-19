@@ -21,6 +21,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthService} from "./servics/auth.service";
 import { SessionComponent } from './events/event-details/create-session/session/session.component';
 import { SessionListComponent } from './events/event-details/session-list/session-list.component';
+import { CollapsibleWellComponent } from './events/event-details/session-list/collapsible-well/collapsible-well.component';
+import { DurationPipe } from './pipes/duration.pipe';
 
 export  const appRoutes:Routes=[
   {path:'events',component:EventListComponent,resolve:{events:EventListResolver}},
@@ -45,7 +47,9 @@ export  const appRoutes:Routes=[
     ProfileComponent,
     LoginComponent,
     SessionComponent,
-    SessionListComponent
+    SessionListComponent,
+    CollapsibleWellComponent,
+    DurationPipe
   ],
   imports: [
     BrowserModule,
