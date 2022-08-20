@@ -23,6 +23,11 @@ import { SessionComponent } from './events/event-details/create-session/session/
 import { SessionListComponent } from './events/event-details/session-list/session-list.component';
 import { CollapsibleWellComponent } from './events/event-details/session-list/collapsible-well/collapsible-well.component';
 import { DurationPipe } from './pipes/duration.pipe';
+import { SimpleModalComponent } from './modals/simple-modal/simple-modal.component';
+import { ModalTriggerDirective } from './modals/modal-trigger/modal-trigger.directive';
+import {JQUERY_TOKEN} from "./servics/jQuery.service";
+import { UpvoteComponent } from './events/event-details/upvote/upvote.component';
+import { LocationDirective } from './events/create-event/location.directive';
 
 export  const appRoutes:Routes=[
   {path:'events',component:EventListComponent,resolve:{events:EventListResolver}},
@@ -49,7 +54,11 @@ export  const appRoutes:Routes=[
     SessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent,
+    ModalTriggerDirective,
+    UpvoteComponent,
+    LocationDirective
   ],
   imports: [
     BrowserModule,
@@ -67,7 +76,10 @@ export  const appRoutes:Routes=[
     ,EventRouteActivator,
     AuthService,
     {provide: 'canDeactivateCreateEvent',
-    useValue: checkDirtyState}
+    useValue: checkDirtyState},
+    {
+      provide:JQUERY_TOKEN,useValue:jQuery
+    }
   ],
   bootstrap: [AppComponent]
 })

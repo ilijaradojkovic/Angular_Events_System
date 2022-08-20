@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {MyEvent} from "../models/myEvent";
-import {Observable, Subject} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
+import {MySession} from "../models/mySession";
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,29 @@ export class EventService {
     let index=EVENTS.findIndex(x=>x.id==event.id)
     EVENTS[index]=event
   }
+
+  searchSessions(searchTerm: string):Observable<MySession[]> {
+
+
+    let term=searchTerm.toLocaleLowerCase()
+    let results:MySession[]=[]
+
+    EVENTS.forEach(event=>{
+      let matching=event.sessions.filter(session=>
+        session.name.toLocaleLowerCase().indexOf(term)>-1)
+      results=matching.map(session=>{
+        session.id=event.id
+        return session
+      })
+    })
+    //ovo je observable
+
+  let emmiter=new BehaviorSubject(results)
+
+    return emmiter.asObservable()
+
+  }
+
 }
 // @ts-ignore
 const EVENTS:MyEvent[] = [
